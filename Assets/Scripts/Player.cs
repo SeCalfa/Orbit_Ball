@@ -1,9 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class Player : MonoBehaviour
 {
@@ -15,18 +12,18 @@ public class Player : MonoBehaviour
     private float angularSpeed;
     [SerializeField]
     private float rotationRadius;
-    [SerializeField]
-    private GetMethod getMethod;
 
     private bool isCanMove = false;
     private float posX, posY, angle = 4.7f;
     private int direction = 1;
 
-    private event Action<int> onLose;
+    private event Action<string, string, Action, Action, Action> onLose;
+
+    private Database<DataModel> scoreData = new Database<DataModel>();
 
     private void Awake()
     {
-        onLose += getMethod.Get;
+        onLose += PostData;
 
         StartCoroutine(TimerToStart());
     }
@@ -45,12 +42,26 @@ public class Player : MonoBehaviour
         }
         else if (collision.gameObject.layer == 7)
         {
+            DataModel.KeyValue model = new DataModel.KeyValue();
+            model.key = "score";
+            model.value = score.GetScore;
+
+            string modelJson = JsonUtility.ToJson(model);
+            print(modelJson);
+
             score.ShowFinalScore();
             mainUi.OpenLosePanel();
-            onLose?.Invoke(score.GetScore);
+            onLose?.Invoke(Constants.PostAddNewKeyValue, modelJson, Test, Test, Test);
             Time.timeScale = 0;
         }
     }
+
+    private void PostData(string uri, string jsonData, Action OnSuccess = null, Action OnFailed = null, Action OnDataModelNotFilled = null)
+    {
+        StartCoroutine(scoreData.Post(uri, jsonData, OnSuccess, OnFailed, OnDataModelNotFilled));
+    }
+
+    private void Test() => print("GG");
 
     private void Movement()
     {

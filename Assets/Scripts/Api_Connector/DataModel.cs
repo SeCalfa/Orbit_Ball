@@ -1,15 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class DataModel : MonoBehaviour
+public class DataModel
 {
-
     [System.Serializable]
     public struct KeyValue
     {
-        public string fieldName;
-        public string value;
+        public string key;
+        public int value;
     }
 
 }

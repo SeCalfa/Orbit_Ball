@@ -1646,7 +1646,6 @@ GameObject:
   - component: {fileID: 1253726718}
   - component: {fileID: 1253726720}
   - component: {fileID: 1253726717}
-  - component: {fileID: 1253726721}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1737,7 +1736,6 @@ MonoBehaviour:
   score: {fileID: 1939670740}
   angularSpeed: 2
   rotationRadius: 1.2
-  getMethod: {fileID: 1253726721}
 --- !u!50 &1253726718
 Rigidbody2D:
   serializedVersion: 4
@@ -1795,24 +1793,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &1253726721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1253726714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e35a932efa281ab428051ec02415878c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uri: http://localhost:8080/stat/new
-  KeyValue:
-  - fieldName: key
-    value: score
-  - fieldName: value
-    value: 0
 --- !u!1 &1260118704
 GameObject:
   m_ObjectHideFlags: 0
