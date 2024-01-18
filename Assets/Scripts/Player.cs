@@ -15,8 +15,6 @@ public class Player : MonoBehaviour
     private float angularSpeed;
     [SerializeField]
     private float rotationRadius;
-    [SerializeField]
-    private GetMethod getMethod;
 
     private bool isCanMove = false;
     private float posX, posY, angle = 4.7f;
@@ -26,6 +24,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        GetMethod getMethod = FindObjectOfType<GetMethod>();
         onLose += getMethod.Get;
 
         StartCoroutine(TimerToStart());

@@ -5,8 +5,7 @@ using UnityEngine;
 public class DataModel : MonoBehaviour
 {
 
-    [System.Serializable]
-    public struct KeyValue
+    public class KeyValue
     {
         public string fieldName;
         public string value;

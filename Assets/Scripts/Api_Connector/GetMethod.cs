@@ -8,12 +8,21 @@ public class GetMethod : MonoBehaviour
 
     [SerializeField]
     private string uri;
-    [SerializeField]
-    private DataModel.KeyValue[] KeyValue;
+
+    private DataModel.KeyValue[] KeyValue = new DataModel.KeyValue[]
+    {
+        new DataModel.KeyValue() { fieldName = "key", value = "score" },
+        new DataModel.KeyValue() { fieldName = "value", value = "0" }
+    };
 
     public void Get(int score)
     {
         StartCoroutine(GetData(score));
+    }
+
+    public void SetName(string name)
+    {
+        KeyValue[0].value = name;
     }
 
     private IEnumerator GetData(int score)
